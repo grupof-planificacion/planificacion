@@ -1,0 +1,57 @@
+﻿<?php include("template/cabezera.php");?>
+
+
+
+
+<h3>Seccion de noticias</h3>
+
+
+
+
+
+
+<div class="jumbotron">
+    <h1 class="display-3">Canchas</h1>
+    <p class="lead">Reserva de canchas</p>
+    <hr class="my-2">
+    
+</div>
+
+
+<?php 
+
+include("admin/config/bd.php");
+$sentenciaSQL= $coneccion-> prepare("SELECT*FROM canchas");
+$sentenciaSQL->execute();
+$listacanchas=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
+
+<?php foreach($listacanchas as $cancha) { ?>
+
+<div class="col-md-3">
+</br>
+<div class="card">
+    <img class="card-img-top" src="./imagenes/<?php echo $cancha["IMAGEN"];?>" alt="">
+    <div class="card-body">
+    <h4 class="card-title"><?php echo $cancha["NOMBRE"]; ?></h4>
+       
+    
+        <details>
+
+  <summary role="button" class="btn btn-primary" >Más información</summary>
+  
+  <h2></br><?php echo $cancha["DESCRIPCION"];?></br></h2>
+  </br><img class="card-img-top" src="./imagenes/<?php echo $cancha["IMAGEN2"];?>" /> </br>
+        </details> 
+
+
+</div>
+</div>   
+</div>
+
+<?php  }?>
+
+<?php include("template/pie.php");?>     
